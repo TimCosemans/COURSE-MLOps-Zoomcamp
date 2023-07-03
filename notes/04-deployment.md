@@ -1,6 +1,17 @@
 # Deployment
+When do we want predictions: 
+- Batch/offline: model is not running all the time 
+- Online: model is running all the time, either through a web service or a streaming service
+
+## Web service 
+When users asks for a prediction, the model is applied and the prediction is returned. Model is up and running all the time.
+
+## Streaming 
+There is no 1-to-1 relationship between input and output. There is a 1-to-many relationship. A request is used by different models to make predictions. The connection is more implicit. Back-end is connected to a data stream, the data stream feeds multiple applications. It is less important how many services are connected to the stream. They can be added or removed at any time.
+
 ## Batch deployment 
-To do batch deploymeny, you first need a script that makes predictions, given a certain data frame. The output of this script needs to be another `pandas` dataframe that you can save to the output directory (e.g., as a parquet file).  Using your notebook, use the followiong commands:
+At a regular interval. A scoring job takes the data, applies the model and gives back predictions. 
+To do batch deployment, you first need a script that makes predictions, given a certain data frame. The output of this script needs to be another `pandas` dataframe that you can save to the output directory (e.g., as a parquet file).  Using your notebook, use the followiong commands:
 
 `jupyter nbconvert --to script notebook.ipynb`
 

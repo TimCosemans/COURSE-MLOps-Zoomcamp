@@ -59,21 +59,3 @@ To make sure your code is reproducible, you should also create a requirements.tx
 
 `pipenv requirements > requirements.txt`
 
-## Setting up the data
-Data from online sources is collected using [Windsor.ai](https://www.windsor.ai/). The data is stored in Azure Blob storage. To access the data, you need to install the Azure Storage Blobs client:
-
-`pipenv install azure-storage-blob`	
-
-
-## Experiment tracking
-To track your experiments, you can use [MLflow](https://mlflow.org/). To install it, run:
-
-`pipenv install mlflow`
-
-You can then start the tracking server by running:
-
-`mlflow ui --backend-store-uri sqlite:///mlflow.db`
-
-This automatically creates a database file called mlflow.db. You can then access the tracking server at http://localhost:5000.
-In the subfolder 'models', you can find a notebook containing the experiments for the project. This are logged in the mlflow.db file. From these experiments, you can then select the best model and save it to a file. This file can then be used to make predictions on new data.
-
