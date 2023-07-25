@@ -38,18 +38,53 @@ Your code needs to be clean and easily readable. Install both a linter and a for
 
 `pipenv install --dev pylint black isort`	
 
-You can integrate your formatter and linter into the VSCode Editor. To do so, follow the instructions [here](https://code.visualstudio.com/docs/python/editing) and [here](https://code.visualstudio.com/docs/python/linting). Some instructions they give, you might want to ignore. You can do so using a pyproject.toml file. An example of this file is in the repository.
+You can integrate your formatter and linter into the VSCode Editor. To do so, follow the instructions [here](https://code.visualstudio.com/docs/python/editing) and [here](https://code.visualstudio.com/docs/python/linting). Some instructions they give, you might want to ignore. You can do so using a pyproject.toml file. 
 
+<pre>
+<code>
+[tool.pylint.messages_control]
+
+disable = [
+    "missing-function-docstring",
+    "missing-final-newline",
+    "missing-class-docstring",
+    "missing-module-docstring",
+    "invalid-name",
+    "too-few-public-methods"
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+skip-string-normalization = true
+
+[tool.isort]
+multi_line_output = 3
+length_sort = true
+
+</code>
+</pre>
+
+You can also disable notifications for certain classes by adding 
+
+<pre>
+<code>
+`# pylint: disable=too-dew-public-methods`
+</code>
+</pre>
+
+Error code returned will not be 0 if there are warnings. So make sure to disable all warnings you do not want to see.
 Yet you might want to run the following command in your command line to see what changes your formatter would make:
 
 `pylint file.py`
 
-`black --diff . | less`
-`isort --diff . | less`
+`black --diff . | less #to format code`
+`isort --diff . | less #to sort imports`
 
 To execute the changes on all files, run:
 
 `black .`	
+`isort .`	
 
 And to see the differences, run:
 
