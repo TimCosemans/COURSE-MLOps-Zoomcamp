@@ -92,3 +92,15 @@ docker run hello-world
 
 You can then install the Remote - SSH extension in VSCode and connect to the VM.
 
+## Terraform
+It is always good practice to setup your infrastructure using code. This way, you can easily recreate your infrastructure and you can version control it. You can either choose to do so from [scratch](https://developer.hashicorp.com/terraform/tutorials/azure-get-started/infrastructure-as-code) or [export](https://developer.hashicorp.com/terraform/tutorials/state/state-import) existing infrastructure to Terraform. Use a .tfvars file to store your credentials. You can then use the following commands to setup your infrastructure:
+
+<pre>
+<code>
+terraform init
+terraform plan -var-file="credentials.tfvars"
+terraform apply -var-file="credentials.tfvars"
+</code>
+</pre>
+
+
